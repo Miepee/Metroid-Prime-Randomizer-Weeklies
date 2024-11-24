@@ -23,28 +23,35 @@ jobs:
       - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
-      - name: Set month and year
+      - name: Set environment variables
         run: |
           export LANG=C
           month_short=$(date +%b) 
           month_long=$(date +%B) 
+          year=$(date +%Y)
+          declare -a folders=("Prime" "Echoes" "CGC")
+          
           month_short="${month_short,,}"
           month_long="${month_long,,}"
-          year=$(date +%Y)
+          
           echo "MONTH_SHORT=$month_short" >> $GITHUB_ENV
           echo "MONTH_LONG=$month_long" >> $GITHUB_ENV
           echo "YEAR=$year" >> $GITHUB_ENV
+          echo "FOLDERS=$folders" >> $GITHUB_ENV
+          
+          
 
-      - name: echo
+      - name: echo test
         run: |
           echo $MONTH_SHORT
           echo $MONTH_LONG
           echo $YEAR
+          echo $FOLDERS
           
-      - name: rename
+      - name: Rename Presets in preperation for upload
         run: |
-          declare -a folders=("Prime" "Echoes" "CGC")
-          for subfolder in "${folders[@]}"
+          
+          for subfolder in "${FOLDERS[@]}"
           do
             for f in ./$subfolder/*.rdvpreset
             do
@@ -53,6 +60,10 @@ jobs:
             done
           done
           tree .
+
+      - name: Create zips
+        run: |
+        
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
