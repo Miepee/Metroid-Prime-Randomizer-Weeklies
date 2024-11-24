@@ -43,7 +43,7 @@ jobs:
           
       - name: rename
         run: |
-          for $f in ./**.rdvpreset
+          for f in ./**.rdvpreset
           do
             echo $f
             mv $f ${f/current/"$MONTH_LONG-YEAR"}
