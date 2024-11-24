@@ -17,8 +17,12 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    env:
+        FOLDERS: ("Prime" "Echoes" "CGC")
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
@@ -29,7 +33,6 @@ jobs:
           month_short=$(date +%b) 
           month_long=$(date +%B) 
           year=$(date +%Y)
-          declare -a folders=("Prime" "Echoes" "CGC")
           
           month_short="${month_short,,}"
           month_long="${month_long,,}"
@@ -37,21 +40,18 @@ jobs:
           echo "MONTH_SHORT=$month_short" >> $GITHUB_ENV
           echo "MONTH_LONG=$month_long" >> $GITHUB_ENV
           echo "YEAR=$year" >> $GITHUB_ENV
-          echo "FOLDERS=$folders" >> $GITHUB_ENV
-          
-          
 
       - name: echo test
         run: |
           echo $MONTH_SHORT
           echo $MONTH_LONG
           echo $YEAR
-          echo $FOLDERS
+          echo $env.FOLDERS
           
       - name: Rename Presets in preperation for upload
         run: |
           
-          for subfolder in "${FOLDERS[@]}"
+          for subfolder in "${env.FOLDERS[@]}"
           do
             for f in ./$subfolder/*.rdvpreset
             do
