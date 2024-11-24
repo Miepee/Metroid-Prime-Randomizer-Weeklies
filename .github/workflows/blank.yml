@@ -34,13 +34,6 @@ jobs:
           echo "MONTH_LONG=$month_long" >> $GITHUB_ENV
           echo "MONTH_LONG_UPPER=$month_long_upper" >> $GITHUB_ENV
           echo "YEAR=$year" >> $GITHUB_ENV
-
-      - name: echo test
-        run: |
-          echo $MONTH_SHORT
-          echo $MONTH_LONG
-          echo $YEAR
-          echo $FOLDERS
           
       - name: Rename Presets in preperation for upload
         run: |
@@ -69,13 +62,13 @@ jobs:
       #    path: ./*.zip
 
 
-      - name: Upload binaries to release
+      - name: Create Tag and Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
           file: ./*.zip
           asset_name: mything
-          tag: weekly-settings-${{ env.MONTH_SHORT }}-${{ env.YEAR }}-20
+          tag: weekly-settings-${{ env.MONTH_SHORT }}-${{ env.YEAR }}
           release_name: Prime/Echoes/CGC Weekly Settings (${{ env.MONTH_LONG_UPPER }} ${{ env.YEAR }})
           body: "Current presets for all Prime/Echoes/CGC weeklies as of ${{ env.MONTH_LONG_UPPER }} ${{ env.YEAR }}."
