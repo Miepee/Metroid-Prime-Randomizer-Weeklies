@@ -49,7 +49,7 @@ jobs:
             for f in ./$subfolder/*.rdvpreset
             do
               echo $f
-              mv $f ${f/current/"$MONTH_LONG-YEAR"}
+              mv $f ${f/current/"$MONTH_LONG-$YEAR"}
             done
           done
           tree .
