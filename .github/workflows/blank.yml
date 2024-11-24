@@ -27,6 +27,7 @@ jobs:
         run: |
           export LANG=C
           month=$(date +%b) 
+          month="${month,,}
           year=$(date +%Y)
           echo "MONTH=$month" >> $GITHUB_ENV
           echo "YEAR=$year" >> $GITHUB_ENV
