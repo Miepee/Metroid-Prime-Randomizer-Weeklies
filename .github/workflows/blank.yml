@@ -65,7 +65,7 @@ jobs:
         run: |
           for subfolder in $FOLDERS
           do
-            zip ${subfolder,,}-weekly-settings-$MONTH_SHORT-$YEAR.zip ./$subfolder/*.rdvpreset
+            zip -j ${subfolder,,}-weekly-settings-$MONTH_SHORT-$YEAR.zip ./$subfolder/*.rdvpreset
           done
           ls
         
