@@ -26,16 +26,29 @@ jobs:
       - name: Set month and year
         run: |
           export LANG=C
-          month=$(date +%b) 
-          month="${month,,}"
+          month_short=$(date +%b) 
+          month_long=$(date +%B) 
+          month_short="${month_short,,}"
+          month_long="${month_long,,}"
           year=$(date +%Y)
-          echo "MONTH=$month" >> $GITHUB_ENV
+          echo "MONTH_SHORT=$month_short" >> $GITHUB_ENV
+          echo "MONTH_LONG=$month_long" >> $GITHUB_ENV
           echo "YEAR=$year" >> $GITHUB_ENV
 
       - name: echo
         run: |
-          echo $MONTH
+          echo $MONTH_SHORT
+          echo $MONTH_LONG
           echo $YEAR
+          
+      - name: rename
+        run: |
+          for $f in ./**.rdvpreset
+          do
+            echo $f
+            mv $f ${f/current/"$MONTH_LONG-YEAR"}
+          done
+          tree .
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
