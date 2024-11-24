@@ -51,8 +51,9 @@ jobs:
       - name: Rename Presets in preperation for upload
         run: |
           
-          for subfolder in "$FOLDERS"
+          for subfolder in $FOLDERS
           do
+            echo $subfolder
             for f in ./$subfolder/*.rdvpreset
             do
               echo $f
