@@ -23,13 +23,16 @@ jobs:
           export LANG=C
           month_short=$(date +%b) 
           month_long=$(date +%B) 
+          month_long_upper=$month_long
           year=$(date +%Y)
           
           month_short="${month_short,,}"
           month_long="${month_long,,}"
           
+          
           echo "MONTH_SHORT=$month_short" >> $GITHUB_ENV
           echo "MONTH_LONG=$month_long" >> $GITHUB_ENV
+          echo "MONTH_LONG_UPPER=$month_long_upper" >> $GITHUB_ENV
           echo "YEAR=$year" >> $GITHUB_ENV
 
       - name: echo test
@@ -73,6 +76,6 @@ jobs:
           file_glob: true
           file: ./*.zip
           asset_name: mything
-          tag: weekly-settings-${{ env.MONTH_SHORT }}-${{ env.YEAR }}-10
-          release_name: Prime/Echoes/CGC Weekly Settings (${{ env.MONTH_LONG }} ${{ env.YEAR }})
-          body: "This is my release text"
+          tag: weekly-settings-${{ env.MONTH_SHORT }}-${{ env.YEAR }}-20
+          release_name: Prime/Echoes/CGC Weekly Settings (${{ env.MONTH_LONG_UPPER }} ${{ env.YEAR }})
+          body: "Current presets for all Prime/Echoes/CGC weeklies as of ${{ env.MONTH_LONG_UPPER }} ${{ env.YEAR }}."
