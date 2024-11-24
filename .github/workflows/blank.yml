@@ -67,7 +67,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
           file: ./*.zip
-          asset_name: mything
           tag: weekly-settings-${{ env.MONTH_SHORT }}-${{ env.YEAR }}
           release_name: Prime/Echoes/CGC Weekly Settings (${{ env.MONTH_LONG_UPPER }} ${{ env.YEAR }})
           body: "Current presets for all Prime/Echoes/CGC weeklies as of ${{ env.MONTH_LONG_UPPER }} ${{ env.YEAR }}."
