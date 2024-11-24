@@ -73,5 +73,6 @@ jobs:
           file_glob: true
           file: ./*.zip
           asset_name: mything
-          tag: weekly-settings-$MONTH-SHORT-$YEAR-10
+          tag: weekly-settings-${{ env.MONTH_SHORT }}-${{ env.YEAR }}-10
+          release_name: Prime/Echoes/CGC Weekly Settings (${{ env.MONTH_LONG }} ${{ env.YEAR }})
           body: "This is my release text"
