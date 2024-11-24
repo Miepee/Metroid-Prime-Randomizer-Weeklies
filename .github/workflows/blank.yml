@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-        FOLDERS: "Prime" "Echoes" "CGC"
+        FOLDERS: "Prime Echoes CGC"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
