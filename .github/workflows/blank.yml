@@ -46,12 +46,12 @@ jobs:
           echo $MONTH_SHORT
           echo $MONTH_LONG
           echo $YEAR
-          echo $env.FOLDERS
+          echo $FOLDERS
           
       - name: Rename Presets in preperation for upload
         run: |
           
-          for subfolder in "${env.FOLDERS[@]}"
+          for subfolder in "${FOLDERS[@]}"
           do
             for f in ./$subfolder/*.rdvpreset
             do
